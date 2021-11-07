@@ -1,8 +1,8 @@
 const { sequelize } = require("../database/config");
 const { DataTypes } = require("sequelize");
 
-const Biller_inquiry = sequelize.define(
-  "biller_inquiry",
+const Biller_transaction = sequelize.define(
+  "biller_transaction",
   {
     biller_name: {
       type: DataTypes.STRING,
@@ -28,11 +28,11 @@ const Biller_inquiry = sequelize.define(
     },
   },
   {
-    tableName: "biller_inquiry",
+    tableName: "biller_transaction",
   }
 );
 
-// Biller_inquiry.sync({ force: true });
+// Biller_transaction.sync({ force: true });
 // console.log("The table for the User model was just (re)created!");
 
-module.exports = { Biller_inquiry };
+module.exports = { Biller_transaction };

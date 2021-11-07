@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { Biller_routing } = require("../models/biller_routing.model");
-const { Biller_inquiry } = require("../models/biller_inquiry.model");
+const { Biller_transaction } = require("../models/biller_transaction.model");
 const CONFIG = require("../config");
 const { nanoid } = require("nanoid");
 
@@ -55,7 +55,7 @@ const inquiryToBiller = async (req, res) => {
       partner_response: JSON.stringify(resp.data),
     };
 
-    const inquiryData = await Biller_inquiry.create(data);
+    const inquiryData = await Biller_transaction.create(data);
     if (!inquiryData) {
       return res.status(404).send({ message: "failed to store inquiryData" });
     }
@@ -72,4 +72,19 @@ const inquiryToBiller = async (req, res) => {
   }
 };
 
-module.exports = { createMockData, inquiryToBiller };
+const confirmationToBiller = async (req, res) => {
+  try {
+    const { sessionId } = req.body;
+    const biller = await Biller_transaction.findOne({
+      where: {
+        sessionId: sessionId,
+      },
+    });
+
+    if (!biller) {
+      return res.status(404).send({ message: "biller sessionId not found." });
+    }
+  } catch (error) {}
+};
+
+module.exports = { createMockData, inquiryToBiller, confirmationToBiller };
