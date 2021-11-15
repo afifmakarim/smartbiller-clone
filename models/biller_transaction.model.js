@@ -23,7 +23,19 @@ const Biller_transaction = sequelize.define(
     notificationMessage: {
       type: DataTypes.STRING,
     },
-    partner_response: {
+    transactionId: {
+      type: DataTypes.STRING,
+    },
+    inquiryOriginalResponse: {
+      type: DataTypes.STRING,
+    },
+    inquiryStatus: {
+      type: DataTypes.STRING,
+    },
+    paymentOriginalResponse: {
+      type: DataTypes.STRING,
+    },
+    paymentStatus: {
       type: DataTypes.STRING,
     },
   },

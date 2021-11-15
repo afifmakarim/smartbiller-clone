@@ -1,7 +1,12 @@
 var express = require("express");
 var router = express.Router();
-var { inquiryToBiller } = require("../controllers/apiControllers");
+var {
+  inquiryToBiller,
+  confirmationToBiller,
+} = require("../controllers/apiControllers");
+const verifyBasicAuth = require("../middleware/verifyBasicAuth");
 
-router.post("/inquiry", inquiryToBiller);
+router.post("/inquiry", [verifyBasicAuth], inquiryToBiller);
+router.post("/confirmation", [verifyBasicAuth], confirmationToBiller);
 
 module.exports = router;

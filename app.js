@@ -19,4 +19,6 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/sb/v1/biller", billersRouter);
 
+// const auth = require("./models/auth.model");
+// auth.sync({ force: true });
 module.exports = app;
